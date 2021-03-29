@@ -47,7 +47,9 @@
 const sitios = await response.json();
 
 for(const sitio of sitios) {
-    markers.push({coords:{lat:sitio.coord_X.replace(/\"/g, ""), lng:sitio.coord_Y.replace(/\"/g, "")}})
+    markers.push({coords:{lat:sitio.coord_X, lng:sitio.coord_Y}, id: sitio.id_sitio })
+    console.log(sitio.coord_X);
+    
 }}
             function initMap() {
               
@@ -60,7 +62,7 @@ for(const sitio of sitios) {
               });
 rendermarkers();
 console.log(markers);
-markers.push({coords:{lat:41.54107341860731, lng:-8.446089910450437}})
+markers.push({coords:{lat:41.54107341860731, lng:-8.446089910450437}, id: 7});
             
 
               //Array of markers
@@ -92,7 +94,8 @@ markers.push({coords:{lat:41.54107341860731, lng:-8.446089910450437}})
                 marker = new google.maps.Marker({
                   position:props.coords,
                   map:map,
-                  url: props.web
+                  url: props.web,
+                  id: props.id
                  });
 
                  //Check for content
@@ -111,7 +114,9 @@ infoWindow.close();
                  }
 
                  google.maps.event.addListener(marker, 'click', function() {
-window.location.href = this.url;
+//window.location.href = this.url;
+sessionStorage.setItem('id_sitio', this.id);
+console.log(this.id);
 });
               }
             } 
