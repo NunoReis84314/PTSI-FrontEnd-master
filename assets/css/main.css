@@ -3491,6 +3491,7 @@ input, select, textarea {
 			position: absolute;
 			right: 0;
 			top: 0;
+			
 		}
 
 			#header nav > ul {
@@ -3532,9 +3533,22 @@ input, select, textarea {
 						line-height:40px;
 					}
 
+
+ .burger {
+	display:none;
+}  
+
+					.burger div{
+						width: 25px;
+						height: 3px;
+						background-color: #fff;
+						margin: 5px;
+						
 					
+					} 
+
 				
-				
+		      
 
 					#header nav > ul > li > ul > li > a  {
                         color:#fff;
@@ -3570,17 +3584,22 @@ input, select, textarea {
 								width: 2em;
 							}
 
-							@media screen and (max-width: 736px) {
+							
 
-								#header nav > ul > li > a.menuToggle {
-									padding: 0 1.5em;
-								}
 
-									#header nav > ul > li > a.menuToggle span {
-										display: none;
-									}
+
+							@media screen and (max-width: 736px){
+
+								
+
+								
+
+								
+
 
 							}
+
+							
 
 						@media screen and (max-width: 736px) {
 
