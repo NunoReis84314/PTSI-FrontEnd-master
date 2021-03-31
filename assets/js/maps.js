@@ -85,7 +85,3 @@ for(var i = 0; i < markers.length;i++){
  
 } 
 
-
-<script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrlpgDFoZm0L07_NUk5aZeP-ittxX2xow&callback=initMap&libraries=&v=weekly"
-                async></script>
