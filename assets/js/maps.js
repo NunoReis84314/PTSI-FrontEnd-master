@@ -22,7 +22,7 @@ function addMarker(props){
       content: props.content
   });
 
-  marker.addListener('mouseover', function(){
+marker.addListeneclickr('', function(){
       infoWindow.open(map, marker);
   });
  /* marker.addListener("mouseout", function() {
@@ -38,7 +38,7 @@ console.log(this.id);
   }
 for(const sitio of sitios) {
     
-addMarker({coords:{lat:sitio.coord_X, lng:sitio.coord_Y}, id: sitio.id_sitio })
+addMarker({coords:{lat:sitio.coord_X, lng:sitio.coord_Y}, id: sitio.id_sitio});
 
 //console.log(sitio.coord_X);
 //console.log(markers.length);
