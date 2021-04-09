@@ -1,68 +1,95 @@
-
 async function requestLogin() {
-    var email = document.getElementById('your-email').value;
-    var password = document.getElementById('password').value;
-    
+  var email = document.getElementById('your-email').value;
+  var password = document.getElementById('password').value;
 
-    
-                fetch('https://ptsibackend.herokuapp.com/login', {
-                    method: 'POST',
-                    
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }).then(result => {
-                    console.log(result)
-                    if(result.status == 200) {
-                  
-                      
-                        
-                    
-                       window.location.replace("semregisto.html")
-                    }
-                    else {
-                        console.log("Erro!")
-                    }
-                    return result.json();
-                })
-            }
-       
-            async function requestRegister() {
-                var name = document.getElementById('full-name').value;
-                var email = document.getElementById('your-email').value;
-                var password = document.getElementById('password').value;
-                var conf_pwd = document.getElementById('confirm_pwd').value;
-            
-                
-                            fetch('https://ptsibackend.herokuapp.com/register', {
-                                method: 'POST',
-                                
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                
-                                body: JSON.stringify({
-                                    name: name,
-                                    email: email,
-                                    password: password,
-                                    conf_pwd: conf_pwd
-                                })
-                            }).then(result => {
-                                console.log(result)
-                                if(result.status == 200) {
-                                    window.location.replace("semregisto.html") 
-                                }
-                                else {
-                                    console.log("Erro!")
-                                }
-                                return result.json();
-                            })
-                        }
+
+
+  fetch('https://ptsibackend.herokuapp.com/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  }).then(result => {
+    console.log(result)
+    if (result.status == 200) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Efetuado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      sessionStorage.setItem('email', email);
+       window.setTimeout(function(){ window.location.replace("semregisto.html") } ,1700);
+    }
+    else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Erro ao efetuar o login, verifique as suas credenciais e tente de novo!',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      })
+      console.log("Erro!")
+    }
+    return result.json();
+  })
+}
+
+
+
+function requestRegister() {
+
+  var name = document.getElementById('full-name').value;
+  var username = document.getElementById('username').value;
+  var email = document.getElementById('your-email').value;
+  var morada = document.getElementById('morada').value;
+  var codigopostal = document.getElementById('codigopostal').value;
+  var localidade = document.getElementById('localidade').value;
+  var pais = document.getElementById('pais').value;
+  var telefone = document.getElementById('telefone').value;
+  var nif = document.getElementById('nif').value;
+  var password = document.getElementById('password').value;
+
+
+
+  fetch('https://ptsibackend.herokuapp.com/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+
+    body: JSON.stringify({
+      name: name,
+      username: username,
+      email: email,
+      morada: morada,
+      codigopostal: codigopostal,
+      localidade: localidade,
+      pais: pais,
+      telefone: telefone,
+      nif: nif,
+      password: password
+
+    })
+  }).then(result => {
+    console.log(result)
+    if (result.status == 200) {
+      swal({ title: "Autenticação feita com sucesso!" })
+      window.location.replace("login.html")
+    }
+    else {
+
+      console.log("Erro!")
+    }
+    return result.json();
+  })
+
+
+}
 
 /*
                       
@@ -145,5 +172,3 @@ async function requestLogin() {
     })
   });
   */
-  
-
