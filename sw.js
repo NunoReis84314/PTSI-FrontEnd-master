@@ -7,9 +7,10 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('cache').then(function(cache) {
       return cache.addAll([
-        "./",
-        "./index.html",
-        "./css/style.css",
+        "https://ptsi-front.herokuapp.com/",
+        "https://ptsi-front.herokuapp.com/index.html",
+        "https://ptsi-front.herokuapp.com/css/style.css",
+        
       ]);
     })
   );
