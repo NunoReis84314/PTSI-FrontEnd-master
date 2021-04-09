@@ -4331,7 +4331,11 @@ body.is-mobile.landing #footer {
 	background-color: #FAF9F6;
 	color: #293241;
 } */
-
+#nome_info{
+	color: black;
+	text-transform: capitalize;
+	
+	}
 
 .cor-letras {
 	color:#293241;
