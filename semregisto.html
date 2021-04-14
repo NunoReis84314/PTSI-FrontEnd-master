@@ -26,6 +26,11 @@
 
             display: none;
         }
+
+        #escondido2 {
+
+display: none;
+}
     </style>
 </head>
 
@@ -99,7 +104,7 @@
                                         ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
                                         '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
                                         .descricao + '</p>' +
-                                        '<input type="button" id="nome_info" onclick=" Vermais()" value="Ver mais"></input>'
+                                        '<a href=#escondido id="a_vermais"> <input type="button" id="nome_info" onclick=" verMais()"  value="Ver mais"></input> </a>'
                                 });
 
                                 console.log(sitio.coord_Y);
@@ -171,14 +176,33 @@
 
                 }
 
-                function Vermais() {
+
+                function verMais() {
                     var x = document.getElementById("escondido");
                     if (x.style.display === "none") {
                         x.style.display = "block";
                     } else {
                         x.style.display = "none";
                     }
+
                 }
+
+                function verMais2() {
+                    
+                    var y = document.getElementById("escondido2");
+                    if (y.style.display === "none") {
+                        y.style.display = "block";
+                    } else {
+                        y.style.display = "none";
+                    }
+
+                }
+
+            
+            
+
+                
+                
             </script>
             <div id="map">
             </div>
@@ -191,33 +215,47 @@
 
         </section>
 
-        <section id="escondido">
-            <div class="page-content">
-                <div class="form-v5-content">
-                    <form class="form-detail">
-                        <h2>Login</h2>
+        <section id="escondido" class="wrapper style5">
 
-                        <div class="form-row">
-                            <label for="your-email">Your Email</label>
-                            <input type="text" name="your-email" id="your-email" class="input-text"
-                                placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="form-row">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" class="input-text"
-                                placeholder="Your Password" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="form-row-last">
-                            <input type="button" name="register" class="register" value="Login"
-                                onclick="requestLogin()">
-                        </div>
-                        <div class="d-flex-justify-content-center-links">
-                            Don't have an account? <a href="register.html" class="ml-2">Sign Up</a>
-                        </div>
-                    </form>
-                </div>
+           <header><p>Contexto geológico: <br />
+                      Contexto geográfico: </p> </header>
+            <div class="inner">
+
+<br />
+<p>Sondagens associadas: </p>
+<div class="dropdown">
+    <button class="dropbtn" >Dropdown</button>
+    <div class="dropdown-content">
+      <a style="cursor:pointer;" onclick="verMais2()">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  
+
+<div id="escondido2">
+
+    <p>Identificador</p>
+    <p>Descrição</p>
+    <p>Data</p>
+    <p>Tipo</p>
+    <p>Observações</p>
+
+    
+
+</div>
+           
+
+                <hr />
+
+                <h4>Feugiat aliquam</h4>
+                <p>Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat.</p>
+
+                <p>Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui, at vestibulum sit amet, auctor bibendum neque.</p>
+
             </div>
         </section>
 
