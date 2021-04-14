@@ -205,7 +205,11 @@ display: none;
                         txt += '<button class="dropbtn"> Selecione uma UE...</button>'
                         txt += '<div class="dropdown-content">'
                         for(let i in ues_associadas) {
+
                             txt += '<a style="cursor:pointer" onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+
+                            txt += '<a onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+
                         }
                     }
                     
@@ -217,13 +221,17 @@ display: none;
 
                     x.innerHTML = txt;
                     
+
                     if (x.style.display == 'none' || x.style.display == '') {
+
+                    if (x.style.display === "none") {
+
                         x.style.display = "block";
                     } else {
                         x.style.display = "none";
                     }
 
-                }
+                }}
 
                 function verMais2() {
                     
