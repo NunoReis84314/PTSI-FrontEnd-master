@@ -56,7 +56,8 @@ display: none;
             <script>
                 let map;
                 var markers = [];
-
+                var sondagens_associadas;
+                var ues_associadas;
 
                 function initMap() {
                     const rendermarkers = async () => {
@@ -89,10 +90,10 @@ display: none;
                         }
 
                         var email = sessionStorage.getItem('email');
+                        
 
                         if (email != "") {
                             for (const sitio of sitios) {
-
                                 addMarker({
                                     coords: {
                                         lat: sitio.coord_X,
@@ -104,11 +105,13 @@ display: none;
                                         ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
                                         '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
                                         .descricao + '</p>' +
-                                        '<a href=#escondido id="a_vermais"> <input type="button" id="nome_info" onclick=" verMais()"  value="Ver mais"></input> </a>'
+                                        '<a href=#escondido id="a_vermais"> <input type="button" id="nome_info" onclick="verMais('+sitio.id_sitio+')"  value="Ver mais"></input> </a>'
                                 });
 
                                 console.log(sitio.coord_Y);
                                 //console.log(markers.length);
+
+                                
                             }
                         } else {
                             for (const sitio of sitios) {
@@ -177,8 +180,43 @@ display: none;
                 }
 
 
-                function verMais() {
+                function verMais(id_sitio) {
+                    fetchSondagens(id_sitio).then(result => sondagens_associadas = result[0].nome)
+                    fetchUEs(id_sitio).then(result => {
+                        if(result.status != 404){
+                            ues_associadas = result;
+                        } else {
+                            ues_associadas = "";
+                        }
+                    });
+                    
+                    console.log(ues_associadas)
                     var x = document.getElementById("escondido");
+
+                    var txt = '<p>Contexto geológico: <br />'
+                    txt += 'Contexto geográfico: </p>'
+                    txt += '<div class="inner">'
+                    txt += '<br />'
+                    txt += '<p>Sondagens associadas: ' + sondagens_associadas + '</p>'
+                    txt += '<div class="dropdown">'
+                    if(ues_associadas == null || ues_associadas == ""){
+                        txt += '<button class="dropbtn"> Nenhuma UE</button>'
+                    } else {
+                        txt += '<button class="dropbtn"> Selecione uma UE...</button>'
+                        txt += '<div class="dropdown-content">'
+                        for(let i in ues_associadas) {
+                            txt += '<a onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+                        }
+                    }
+                    
+                    txt += '</div>'
+                    txt += '</div>'
+                    txt += '<br />'
+                    txt += '<br />'
+                    txt += '<br />'
+
+                    x.innerHTML = txt;
+                    
                     if (x.style.display === "none") {
                         x.style.display = "block";
                     } else {
@@ -197,10 +235,6 @@ display: none;
                     }
 
                 }
-
-            
-            
-
                 
                 
             </script>
@@ -222,7 +256,7 @@ display: none;
             <div class="inner">
 
 <br />
-<p>Sondagens associadas: </p>
+<p id='sondagens'>Sondagens associadas: </p>
 <div class="dropdown">
     <button class="dropbtn" >Dropdown</button>
     <div class="dropdown-content">
@@ -234,29 +268,13 @@ display: none;
   <br />
   <br />
   <br />
-  
-
 <div id="escondido2">
-
     <p>Identificador</p>
     <p>Descrição</p>
     <p>Data</p>
     <p>Tipo</p>
     <p>Observações</p>
-
-    
-
 </div>
-           
-
-                <hr />
-
-                <h4>Feugiat aliquam</h4>
-                <p>Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat.</p>
-
-                <p>Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui, at vestibulum sit amet, auctor bibendum neque.</p>
-
-            </div>
         </section>
 
 
@@ -287,8 +305,7 @@ display: none;
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
-
+    <script src="assets/js/sitioHandler.js"></script>
 
 </body>
 
