@@ -58,35 +58,36 @@ display: none;
                 var markers = [];
                 var sondagens_associadas;
                 var ues_associadas;
-
+                var infoWindow;
                 function initMap() {
                     const rendermarkers = async () => {
                         const response = await fetch('https://ptsibackend.herokuapp.com/sitio');
                         const sitios = await response.json();
-
+                        infoWindow = new google.maps.InfoWindow();
                         function addMarker(props) {
                             var marker = new google.maps.Marker({
                                 position: props.coords,
                                 map: map,
                                 //icon:props.iconImage
                             });
+                            
 
                             // Check for customicon
                             if (props.iconImage) {
                                 // Set icon image
                                 marker.setIcon(props.iconImage);
                             }
-
+ 
+                            
                             // Check content
-                            if (props.content) {
-                                var infoWindow = new google.maps.InfoWindow({
-                                    content: props.content
+                           
+                           if (props.content) {
+                               marker.addListener('click', function () {
+                                    
+                                infoWindow.setContent(props.content);
+      infoWindow.open(map, marker);
                                 });
-
-                                marker.addListener('click', function () {
-                                    infoWindow.open(map, marker);
-                                });
-                            }
+                            } 
                         }
 
                         var email = sessionStorage.getItem('email');
