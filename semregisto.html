@@ -85,7 +85,7 @@ display: none;
                                marker.addListener('click', function () {
                                     
                                 infoWindow.setContent(props.content);
-      infoWindow.open(map, marker);
+                            infoWindow.open(map, marker);
                                 });
                             } 
                         }
@@ -236,6 +236,8 @@ display: none;
 
                 function verMais2() {
                     
+
+
                     var y = document.getElementById("escondido2");
                     if (y.style.display === "none" || y.style.display == '') {
                         y.style.display = "block";
