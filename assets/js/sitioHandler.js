@@ -26,3 +26,15 @@ function fetchUEs(id_sitio){
             }
       }).catch((error) => {return error})
 }
+
+function fetchContextos(id_sitio){
+  return fetch('https://ptsibackend.herokuapp.com/sitio/'+id_sitio, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(result => {
+            response = result.json();
+            return response;
+      }).catch((error) => {return error})
+}
