@@ -27,14 +27,33 @@ function fetchUEs(id_sitio){
       }).catch((error) => {return error})
 }
 
-function fetchContextos(id_sitio){
-  return fetch('https://ptsibackend.herokuapp.com/sitio/'+id_sitio, {
+function fetchContextoGeog(id_sitio){
+  var geog ={};
+  return fetch('https://ptsibackend.herokuapp.com/sitioContextoIDsitio/'+id_sitio, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
       }).then(result => {
-            response = result.json();
-            return response;
+          response = result.json();
+          geog=response;
+          //geog.relevo_geral=response.relevo_geral;
+          //geog.unidade_relevo=response.unidade_relevo;
+          //geog.local_implantacao=response.local_implantacao;
+          return geog;
       }).catch((error) => {return error})
+}
+
+function fetchContextoGeol(id_sitio){
+  var geol ={};
+  return fetch('https://ptsibackend.herokuapp.com/sitiocontextogeolIDsitio/'+id_sitio, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(result => {
+      response = result.json();
+      geol=response;
+      return geol;
+    }).catch((error) => {return error})
 }
