@@ -184,7 +184,13 @@ display: none;
 
 
                 function verMais(id_sitio) {
-                    fetchSondagens(id_sitio).then(result => sondagens_associadas = result[0].nome)
+                    fetchSondagens(id_sitio).then(result => {
+                        if(result.status != 404){
+                            sondagens_associadas = result;
+                        } else {
+                            sondagens_associadas = "";
+                        }
+                    });
                     fetchUEs(id_sitio).then(result => {
                         if(result.status != 404){
                             ues_associadas = result;
@@ -206,6 +212,8 @@ display: none;
                             geol = "";
                         }
                     });
+
+                    console.log('Fetch das sondagens ainda não funciona, é necessário fazer push para o heroku')
 
                     var x = document.getElementById("escondido");
                     var txt = "<p>";

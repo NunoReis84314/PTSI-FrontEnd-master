@@ -1,12 +1,14 @@
 function fetchSondagens(id_sitio){
-    return fetch('https://ptsibackend.herokuapp.com/sitio/'+id_sitio, {
+  var sondagens = {}  
+  return fetch('https://ptsibackend.herokuapp.com/sitiosondagens/'+id_sitio, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
       }).then(result => {
             response = result.json();
-            return response;
+            sondagens = response;
+            return sondagens;
       }).catch((error) => {return error})
 };
 
@@ -37,9 +39,6 @@ function fetchContextoGeog(id_sitio){
       }).then(result => {
           response = result.json();
           geog=response;
-          //geog.relevo_geral=response.relevo_geral;
-          //geog.unidade_relevo=response.unidade_relevo;
-          //geog.local_implantacao=response.local_implantacao;
           return geog;
       }).catch((error) => {return error})
 }
