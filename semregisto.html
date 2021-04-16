@@ -56,6 +56,7 @@ display: none;
             <script>
                 let map;
                 var markers = [];
+                var contextos;
                 var sondagens_associadas;
                 var ues_associadas;
                 var infoWindow;
@@ -190,12 +191,26 @@ display: none;
                             ues_associadas = "";
                         }
                     });
+                    fetchContextos(id_sitio).then(result => {
+                        if(result.status != 404){
+                            contextos = result;
+                        } else {
+                            contextos = "";
+                        }
+                    });
                     
                     console.log(ues_associadas)
                     var x = document.getElementById("escondido");
-
-                    var txt = '<p>Contexto geológico: <br />'
-                    txt += 'Contexto geográfico: </p>'
+                    var txt = "<p>";
+                    if(contextos == null || contextos == ""){
+                        txt += "Contexto geológico: ---<br />";
+                        txt += "Contexto geográfico: --- </p>";
+                    } else {
+                        for(let l in contextos) {
+                            txt += "Contexto geológico: "+contextos[l].nome+"<br />";
+                            txt += "Contexto geográfico: "+contextos[l].Cota+" </p>";
+                        }
+                    }
                     txt += '<div class="inner">'
                     txt += '<br />'
                     txt += '<p>Sondagens associadas: ' + sondagens_associadas + '</p>'
