@@ -168,8 +168,6 @@ textarea {
 
 html {
 	box-sizing: border-box;
-	scroll-behavior: smooth;
-	
 }
 
 *,
@@ -267,7 +265,7 @@ i {
 }
 
 p {
-	margin: 0 0 0.75em 0;
+	margin: 0 0 1em 0;
 }
 
 h1,
@@ -335,6 +333,7 @@ h5 {
 h6 {
 	font-size: 0.7em;
 	line-height: 1.5em;
+	padding-bottom: 25px;
 }
 
 sub {
@@ -1894,7 +1893,7 @@ header h6+p {
 }
 
 header.major {
-	margin: 0 0 3.5em 0;
+	margin: 0 0 1em 0;
 	text-align: center;
 }
 
@@ -1905,7 +1904,7 @@ header.major h5,
 header.major h6 {
 	border-bottom: solid 2px #fff;
 	display: inline-block;
-	padding-bottom: 1em;
+	padding-bottom: 0.5em;
 	position: relative;
 }
 
@@ -2689,11 +2688,21 @@ button:disabled,
 }
 
 .features li {
-	padding: 4em 4em 2em 6em;
+	padding: 2em 4em 2em 6em;
 	display: block;
 	position: relative;
 	text-align: left;
 	width: 50%;
+	height: 320px;
+}
+
+.features li::-webkit-scrollbar{
+	width: 2px;
+	
+}
+
+.features li::-webkit-scrollbar-thumb {
+	background: #293241;
 }
 
 .features li:nth-child(1) {
@@ -2741,7 +2750,7 @@ button:disabled,
 	color: #293241;
 	position: absolute;
 	left: 1.75em;
-	top: 2.75em;
+	top: 1.45em;
 	font-size: 1.5em;
 }
 
@@ -2765,7 +2774,7 @@ button:disabled,
 @media screen and (max-width: 980px) {
 
 	.features li {
-		padding: 3em 2em 1em 2em;
+		padding: 2em 2em 1em 2em;
 		text-align: center;
 	}
 
@@ -2925,7 +2934,7 @@ button:disabled,
 /* Wrapper */
 
 .wrapper {
-	padding: 6em 0 4em 0;
+	padding: 4em 0 4em 0;
 }
 
 .wrapper>.inner {
@@ -3265,8 +3274,8 @@ button:disabled,
 .wrapper.style3 input[type="button"],
 .wrapper.style3 button,
 .wrapper.style3 .button {
-	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.125);
-	color: #ffffff;
+/*	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.125); */
+	color: #293241;
 }
 
 .wrapper.style3 input[type="submit"]:hover,
@@ -3298,8 +3307,8 @@ button:disabled,
 }
 
 .wrapper.style5 {
-	background-color: #fff;
-	color: #293241;
+	background-color: #293241;
+	color: #ffffff;
 }
 
 .wrapper.style5 strong,
@@ -3469,7 +3478,7 @@ button:disabled,
 @media screen and (max-width: 980px) {
 
 	.wrapper {
-		padding: 4em 3em 2em 3em;
+		padding: 3em 3em 2em 3em;
 	}
 
 }
@@ -3610,7 +3619,7 @@ body.is-menu-visible #menu {
 	-webkit-transition: background-color 0.2s ease;
 	-ms-transition: background-color 0.2s ease;
 	transition: background-color 0.2s ease;
-	background: #2e3842;
+	background-color: rgba(46, 56, 66, 0.5);
 	height: 3em;
 	left: 0;
 	line-height: 3em;
@@ -3619,6 +3628,8 @@ body.is-menu-visible #menu {
 	width: 100%;
 	z-index: 10000;
 }
+
+
 
 #header h1 {
 	-moz-transition: opacity 0.2s ease;
@@ -3693,17 +3704,17 @@ body.is-menu-visible #menu {
 
 #header nav>ul>li>ul {
 	position: absolute;
-	top: 50px;
+	top: 48px;
+	background-color: rgba(46, 56, 66, 0.5);
 	/* left: 0; */
-	background: transparent;
 	display: block;
-	width: 300px;
+	width: 250px;
 	transition: 0.5s;
 	opacity: 0;
 	visibility: hidden;
 	color: #fff;
 	list-style-type: none;
-	line-height: 30px;
+	line-height: 35px;
 }
 
  #header ul li:hover ul {
@@ -3816,7 +3827,7 @@ body.is-menu-visible #menu {
 		padding-left: 30px;
 	}
 	
-/*	#showDrop:checked ~ nav>ul>li{
+/*	#show:checked ~ nav>ul>li{
 		opacity:0;
 	} */
 	 
@@ -3863,7 +3874,7 @@ body.is-menu-visible #menu {
 	margin-left: 0;
 }
 
-#header.alt {
+/* #header.alt {
 	background: transparent;
 }
 
@@ -3871,6 +3882,7 @@ body.is-menu-visible #menu {
 	pointer-events: none;
 	opacity: 0;
 }
+
 
 
 /* FIM NAVBAR */
@@ -4333,11 +4345,7 @@ body.is-mobile.landing #footer {
 	background-color: #FAF9F6;
 	color: #293241;
 } */
-#nome_info{
-	color: black;
-	text-transform: capitalize;
-	
-	}
+
 
 .cor-letras {
 	color:#293241;
@@ -4522,58 +4530,96 @@ body.is-mobile.landing #footer {
 
 }
 
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	
-	
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-	min-height:190px;
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	overflow-y: auto; 
-    overflow-x: hidden; 
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-	display: block;
-	
-  }
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-	
-  }
 
-  
+
+/* BOTÕES SOBRE NÓS */
+
+.btn_vermais {
+  border: 2px solid black;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.035);
+  color: #293241;
+  padding: 0px 9px;
+  font-size: 15px;
+  cursor: pointer;
+  border-color: #293241;
+}
+
+.btn_vermais:hover {
+  background-color: #293241;
+  color: white;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+.modal-content {
+  background-color: #293241;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 65%;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+/* The Close Button */
+.close_btn {
+  color: #FAF9F6;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+
+.close_btn:hover,
+.close_btn:focus {
+  color: #98C1D9;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.btn_login {
+  border: 0.8px solid black;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #fff;
+  padding: 0px 4px;
+  font-size: 0.8em;
+  letter-spacing: 0.225em;
+  cursor: pointer;
+  border-color: #ffffff;
+}
+
+
+
+.divcontent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.divbox{
+width: 300px;
+height: 50px;
+background: rgba(46, 56, 66, 0.85);
+}
