@@ -332,12 +332,12 @@ demo = {
                                         lng: sitio.coord_Y
                                     },
                                     id: sitio.id_sitio,
-                                    content: '<h1 id="nome_info">' + sitio.nome + '</h1>' +
+                                    content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' +
                                         '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
                                         ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
                                         '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
                                         .descricao + '</p>' +
-                                        '<a href=#escondido id="a_vermais"> <input type="button" id="nome_info" onclick="verMais('+sitio.id_sitio+')"  value="Ver mais"></input> </a>'
+                                        '<a href=#escondido id="a_vermais"> <input type="button" class="btn_vermais" onclick="verMais('+sitio.id_sitio+')"  value="Ver mais"></input> </a>' + '</div>'
                                 });
 
                                 console.log(sitio.coord_Y);
@@ -354,11 +354,11 @@ demo = {
                                         lng: sitio.coord_Y
                                     },
                                     id: sitio.id_sitio,
-                                    content: '<h1 id="nome_info">' + sitio.nome + '</h1>' +
+                                    content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' + 
                                         '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
                                         ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
                                         '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
-                                        .descricao + '</p>'
+                                        .descricao + '</p>' + '</div>'
                                 });
 
                                 console.log(sitio.coord_Y);
@@ -375,26 +375,10 @@ demo = {
                             lng: -8.420054
                         },
                         zoom: 8,
+                        gestureHandling: 'greedy'
 
                     });
-                    //rendermarkers();
-                    //console.log(markers);
-
-                    //markers.push({coords:{lat:41.530918, lng:-8.780565}, id: 8});
-
-                    //Array of markers
-
-
-
-                    /* var markers = [
-                  {
-                      coords:{lat: 41.54107341860731, lng: -8.446089910450437},
-                 web: 'https://www.cm-braga.pt/pt'
-                  },
-                  {coords:{lat: 41.530918, lng: -8.780565},
-                content:'<img src = "images/banner.jpg"> </img>' , web: 'https://www.municipio.esposende.pt'
-                
-                }]; */
+                    
 
                     //Loop through markers
 
@@ -406,10 +390,104 @@ demo = {
 
 
 
-                    //Add Marker function 
+                   
 
 
-                }, 
+                },
+
+             /*   verMais: function(id_sitio) {
+                  fetchSondagens(id_sitio).then(result => {
+                      if(result.status != 404){
+                          sondagens_associadas = result;
+                      } else {
+                          sondagens_associadas = "";
+                      }
+                  });
+                  fetchUEs(id_sitio).then(result => {
+                      if(result.status != 404){
+                          ues_associadas = result;
+                      } else {
+                          ues_associadas = "";
+                      }
+                  });
+                  fetchContextoGeog(id_sitio).then(result => {
+                      if(result.status != 404){
+                          geog = result[0];
+                      } else {
+                          geog = "";
+                      }
+                  });
+                  fetchContextoGeol(id_sitio).then(result => {
+                      if(result.status != 404){
+                          geol = result[0];
+                      } else {
+                          geol = "";
+                      }
+                  });
+
+                  console.log('Fetch das sondagens ainda não funciona, é necessário fazer push para o heroku')
+
+                  var x = document.getElementById("escondido");
+                  var txt = "<p>";
+                  if(geog == null || geog == ""){
+                      txt += "Contexto geográfico: --- </p>";
+                  } else {
+                      txt += " Contexto geográfico </p>";
+                      txt += "</br>"
+                      txt += "Relevo Geral: "+geog.relevo_geral;
+                      txt += "</br>"
+                      txt += "Unidade de Relevo: "+geog.unidade_relevo;
+                      txt += "</br>"
+                      txt += "Local de Implantação: "+geog.local_implantacao;
+                      txt += "</br>"
+                  }
+                  if(geol == null || geol == ""){
+                      txt += "<p>Contexto geológico: ---<br /></p>";
+                  } else {
+                      txt += "</br>";
+                      txt += "<p> Contexto geológico </p>";
+                      txt += "</br>"
+                      txt += "Substrato Geológico: "+geol.substrato_geol;
+                  }
+                  txt += '<div class="inner">'
+                  txt += '<br />'
+                  txt += '<p>Sondagens associadas: ' + sondagens_associadas + '</p>'
+                  txt += '<div class="dropdown">'
+                  if(ues_associadas == null || ues_associadas == ""){
+                      txt += '<button class="dropbtn"> Nenhuma UE</button>'
+                  } else {
+                      txt += '<button class="dropbtn"> Selecione uma UE...</button>'
+                      txt += '<div class="dropdown-content">'
+                      for(let i in ues_associadas) {
+
+                          txt += '<a style="cursor:pointer" onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+
+                          txt += '<a onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+
+                      }
+                  }
+                  
+                  txt += '</div>'
+                  txt += '</div>'
+                  txt += '<br />'
+                  txt += '<br />'
+                  txt += '<br />'
+
+                  x.innerHTML = txt;
+                  
+
+                  if (x.style.display == 'none' || x.style.display == '') {
+
+                  if (x.style.display === "none") {
+
+                      x.style.display = "block";
+                  } else {
+                      x.style.display = "none";
+                  }
+
+              }}, */
+              
+             
 
   showNotification: function(from, align) {
     color = 'primary';

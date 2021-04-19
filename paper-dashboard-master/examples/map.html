@@ -32,6 +32,12 @@ Coded by www.creative-tim.com
   <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <style>
+     #escondido {
+
+display: none;
+}
+  </style>
 </head>
 
 <body class="">
@@ -149,6 +155,24 @@ Coded by www.creative-tim.com
           </div>
         </div>
       </div>
+
+      <div class="content" id="escondido">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                
+              </div>
+              <div class="card-body ">
+                <div id="map" class="map">
+                  <p>Contexto geográfico: <br />
+                     Contexto geológico: </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -188,8 +212,9 @@ Coded by www.creative-tim.com
   <script>
     $(document).ready(function() {
       demo.initMap();
+      
     });
   </script>
 </body>
-<script src="../../assets/sitioHandler.js"
+<script src="../../assets/sitioHandler.js" 
 </html>
