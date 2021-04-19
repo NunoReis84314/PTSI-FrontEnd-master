@@ -56,7 +56,8 @@ display: none;
             <script>
                 let map;
                 var markers = [];
-                var contextos;
+                var geog;
+                var geol;
                 var sondagens_associadas;
                 var ues_associadas;
                 var infoWindow;
@@ -183,7 +184,13 @@ display: none;
 
 
                 function verMais(id_sitio) {
-                    fetchSondagens(id_sitio).then(result => sondagens_associadas = result[0].nome)
+                    fetchSondagens(id_sitio).then(result => {
+                        if(result.status != 404){
+                            sondagens_associadas = result;
+                        } else {
+                            sondagens_associadas = "";
+                        }
+                    });
                     fetchUEs(id_sitio).then(result => {
                         if(result.status != 404){
                             ues_associadas = result;
@@ -191,25 +198,44 @@ display: none;
                             ues_associadas = "";
                         }
                     });
-                    fetchContextos(id_sitio).then(result => {
+                    fetchContextoGeog(id_sitio).then(result => {
                         if(result.status != 404){
-                            contextos = result;
+                            geog = result[0];
                         } else {
-                            contextos = "";
+                            geog = "";
                         }
                     });
-                    
-                    console.log(ues_associadas)
+                    fetchContextoGeol(id_sitio).then(result => {
+                        if(result.status != 404){
+                            geol = result[0];
+                        } else {
+                            geol = "";
+                        }
+                    });
+
+                    console.log('Fetch das sondagens ainda não funciona, é necessário fazer push para o heroku')
+
                     var x = document.getElementById("escondido");
                     var txt = "<p>";
-                    if(contextos == null || contextos == ""){
-                        txt += "Contexto geológico: ---<br />";
+                    if(geog == null || geog == ""){
                         txt += "Contexto geográfico: --- </p>";
                     } else {
-                        for(let l in contextos) {
-                            txt += "Contexto geológico: "+contextos[l].nome+"<br />";
-                            txt += "Contexto geográfico: "+contextos[l].Cota+" </p>";
-                        }
+                        txt += " Contexto geográfico </p>";
+                        txt += "</br>"
+                        txt += "Relevo Geral: "+geog.relevo_geral;
+                        txt += "</br>"
+                        txt += "Unidade de Relevo: "+geog.unidade_relevo;
+                        txt += "</br>"
+                        txt += "Local de Implantação: "+geog.local_implantacao;
+                        txt += "</br>"
+                    }
+                    if(geol == null || geol == ""){
+                        txt += "<p>Contexto geológico: ---<br /></p>";
+                    } else {
+                        txt += "</br>";
+                        txt += "<p> Contexto geológico </p>";
+                        txt += "</br>"
+                        txt += "Substrato Geológico: "+geol.substrato_geol;
                     }
                     txt += '<div class="inner">'
                     txt += '<br />'

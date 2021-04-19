@@ -1,12 +1,14 @@
 function fetchSondagens(id_sitio){
-    return fetch('https://ptsibackend.herokuapp.com/sitio/'+id_sitio, {
+  var sondagens = {}  
+  return fetch('https://ptsibackend.herokuapp.com/sitiosondagens/'+id_sitio, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
       }).then(result => {
             response = result.json();
-            return response;
+            sondagens = response;
+            return sondagens;
       }).catch((error) => {return error})
 };
 
@@ -27,14 +29,30 @@ function fetchUEs(id_sitio){
       }).catch((error) => {return error})
 }
 
-function fetchContextos(id_sitio){
-  return fetch('https://ptsibackend.herokuapp.com/sitio/'+id_sitio, {
+function fetchContextoGeog(id_sitio){
+  var geog ={};
+  return fetch('https://ptsibackend.herokuapp.com/sitioContextoIDsitio/'+id_sitio, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
       }).then(result => {
-            response = result.json();
-            return response;
+          response = result.json();
+          geog=response;
+          return geog;
       }).catch((error) => {return error})
+}
+
+function fetchContextoGeol(id_sitio){
+  var geol ={};
+  return fetch('https://ptsibackend.herokuapp.com/sitiocontextogeolIDsitio/'+id_sitio, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(result => {
+      response = result.json();
+      geol=response;
+      return geol;
+    }).catch((error) => {return error})
 }
