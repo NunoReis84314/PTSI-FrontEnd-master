@@ -1,6 +1,6 @@
 demo = {
-  initPickColor: function() {
-    $('.pick-class-label').click(function() {
+  initPickColor: function () {
+    $('.pick-class-label').click(function () {
       var new_class = $(this).attr('new-class');
       var old_class = $('#display-buttons').attr('data-class');
       var display_div = $('#display-buttons');
@@ -13,7 +13,7 @@ demo = {
     });
   },
 
-  initDocChart: function() {
+  initDocChart: function () {
     chartColor = "#FFFFFF";
 
     ctx = document.getElementById('chartHours').getContext("2d");
@@ -94,7 +94,7 @@ demo = {
 
   },
 
-  initChartsPages: function() {
+  initChartsPages: function () {
     chartColor = "#FFFFFF";
 
     ctx = document.getElementById('chartHours').getContext("2d");
@@ -284,212 +284,217 @@ demo = {
     });
   },
 
-   initMap: function() {
+  initMap: function () {
     let map;
-                var markers = [];
-                var sondagens_associadas;
-                var ues_associadas;
-                var infoWindow;
-                
-                    const rendermarkers = async () => {
-                        const response = await fetch('https://ptsibackend.herokuapp.com/sitio');
-                        const sitios = await response.json();
-                        infoWindow = new google.maps.InfoWindow();
-                        function addMarker(props) {
-                            var marker = new google.maps.Marker({
-                                position: props.coords,
-                                map: map,
-                                //icon:props.iconImage
-                            });
-                            
+    var markers = [];
+    var sondagens_associadas;
+    var ues_associadas;
+    var infoWindow;
 
-                            // Check for customicon
-                            if (props.iconImage) {
-                                // Set icon image
-                                marker.setIcon(props.iconImage);
-                            }
- 
-                            
-                            // Check content
-                           
-                           if (props.content) {
-                               marker.addListener('click', function () {
-                                    
-                                infoWindow.setContent(props.content);
-      infoWindow.open(map, marker);
-                                });
-                            } 
-                        }
+    const rendermarkers = async () => {
+      const response = await fetch('https://ptsibackend.herokuapp.com/sitio');
+      const sitios = await response.json();
+      infoWindow = new google.maps.InfoWindow();
 
-                        var email = sessionStorage.getItem('email');
-                        
-
-                        if (email != "") {
-                            for (const sitio of sitios) {
-                                addMarker({
-                                    coords: {
-                                        lat: sitio.coord_X,
-                                        lng: sitio.coord_Y
-                                    },
-                                    id: sitio.id_sitio,
-                                    content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' +
-                                        '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
-                                        ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
-                                        '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
-                                        .descricao + '</p>' +
-                                        '<a href=#escondido id="a_vermais"> <input type="button" class="btn_vermais" onclick="verMais('+sitio.id_sitio+')"  value="Ver mais"></input> </a>' + '</div>'
-                                });
-
-                                console.log(sitio.coord_Y);
-                                //console.log(markers.length);
-
-                                
-                            }
-                        } else {
-                            for (const sitio of sitios) {
-
-                                addMarker({
-                                    coords: {
-                                        lat: sitio.coord_X,
-                                        lng: sitio.coord_Y
-                                    },
-                                    id: sitio.id_sitio,
-                                    content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' + 
-                                        '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
-                                        ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
-                                        '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
-                                        .descricao + '</p>' + '</div>'
-                                });
-
-                                console.log(sitio.coord_Y);
-                                //console.log(markers.length);
-                            }
-                        }
-                    }
-                    rendermarkers();
-                    //New map
-
-                    map = new google.maps.Map(document.getElementById("map"), {
-                        center: {
-                            lat: 41.55032,
-                            lng: -8.420054
-                        },
-                        zoom: 8,
-                        gestureHandling: 'greedy'
-
-                    });
-                    
-
-                    //Loop through markers
-
-                    for (var i = 0; i < markers.length; i++) {
-                        addMarker(markers[i]);
-                        console.log(markers.length);
-                    }
+      function addMarker(props) {
+        var marker = new google.maps.Marker({
+          position: props.coords,
+          map: map,
+          //icon:props.iconImage
+        });
 
 
+        // Check for customicon
+        if (props.iconImage) {
+          // Set icon image
+          marker.setIcon(props.iconImage);
+        }
 
 
-                   
+        // Check content
+
+        if (props.content) {
+          marker.addListener('click', function () {
+
+            infoWindow.setContent(props.content);
+            infoWindow.open(map, marker);
+          });
+        }
+      }
+
+      var email = sessionStorage.getItem('email');
 
 
-                },
+      if (email != "") {
+        for (const sitio of sitios) {
+          addMarker({
+            coords: {
+              lat: sitio.coord_X,
+              lng: sitio.coord_Y
+            },
+            id: sitio.id_sitio,
+            content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' +
+              '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
+              ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
+              '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
+              .descricao + '</p>' +
+              '<a href=#escondido id="a_vermais"> <input type="button" class="btn_vermais" onclick="demo.verMais(' + sitio.id_sitio + ')"  value="Ver mais"></input> </a>' + '</div>'
+          });
 
-             /*   verMais: function(id_sitio) {
-                  fetchSondagens(id_sitio).then(result => {
-                      if(result.status != 404){
-                          sondagens_associadas = result;
-                      } else {
-                          sondagens_associadas = "";
-                      }
-                  });
-                  fetchUEs(id_sitio).then(result => {
-                      if(result.status != 404){
-                          ues_associadas = result;
-                      } else {
-                          ues_associadas = "";
-                      }
-                  });
-                  fetchContextoGeog(id_sitio).then(result => {
-                      if(result.status != 404){
-                          geog = result[0];
-                      } else {
-                          geog = "";
-                      }
-                  });
-                  fetchContextoGeol(id_sitio).then(result => {
-                      if(result.status != 404){
-                          geol = result[0];
-                      } else {
-                          geol = "";
-                      }
-                  });
+          console.log(sitio.coord_Y);
+          //console.log(markers.length);
 
-                  console.log('Fetch das sondagens ainda não funciona, é necessário fazer push para o heroku')
 
-                  var x = document.getElementById("escondido");
-                  var txt = "<p>";
-                  if(geog == null || geog == ""){
-                      txt += "Contexto geográfico: --- </p>";
-                  } else {
-                      txt += " Contexto geográfico </p>";
-                      txt += "</br>"
-                      txt += "Relevo Geral: "+geog.relevo_geral;
-                      txt += "</br>"
-                      txt += "Unidade de Relevo: "+geog.unidade_relevo;
-                      txt += "</br>"
-                      txt += "Local de Implantação: "+geog.local_implantacao;
-                      txt += "</br>"
-                  }
-                  if(geol == null || geol == ""){
-                      txt += "<p>Contexto geológico: ---<br /></p>";
-                  } else {
-                      txt += "</br>";
-                      txt += "<p> Contexto geológico </p>";
-                      txt += "</br>"
-                      txt += "Substrato Geológico: "+geol.substrato_geol;
-                  }
-                  txt += '<div class="inner">'
-                  txt += '<br />'
-                  txt += '<p>Sondagens associadas: ' + sondagens_associadas + '</p>'
-                  txt += '<div class="dropdown">'
-                  if(ues_associadas == null || ues_associadas == ""){
-                      txt += '<button class="dropbtn"> Nenhuma UE</button>'
-                  } else {
-                      txt += '<button class="dropbtn"> Selecione uma UE...</button>'
-                      txt += '<div class="dropdown-content">'
-                      for(let i in ues_associadas) {
+        }
+      } else {
+        for (const sitio of sitios) {
 
-                          txt += '<a style="cursor:pointer" onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+          addMarker({
+            coords: {
+              lat: sitio.coord_X,
+              lng: sitio.coord_Y
+            },
+            id: sitio.id_sitio,
+            content: '<div id="iw-container">' + '<div class="iw-title">' + sitio.nome + '</div>' +
+              '<p id="nome_info">' + '<span>Morada: </span>' + sitio.lugar +
+              ',' + sitio.freguesia1 + ',' + sitio.freguesia2 + '</p>' +
+              '<p id="nome_info">' + '<span>Descrição: </span>' + sitio
+              .descricao + '</p>' + '</div>'
+          });
 
-                          txt += '<a onclick="verMais2('+ues_associadas[i].id_ue+')">'+ues_associadas[i].identificacao+'</a>'
+          console.log(sitio.coord_Y);
+          //console.log(markers.length);
+        }
+      }
+    }
+    rendermarkers();
+    //New map
 
-                      }
-                  }
-                  
-                  txt += '</div>'
-                  txt += '</div>'
-                  txt += '<br />'
-                  txt += '<br />'
-                  txt += '<br />'
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: {
+        lat: 41.55032,
+        lng: -8.420054
+      },
+      zoom: 8,
+      gestureHandling: 'greedy'
 
-                  x.innerHTML = txt;
-                  
+    });
 
-                  if (x.style.display == 'none' || x.style.display == '') {
 
-                  if (x.style.display === "none") {
+    //Loop through markers
 
-                      x.style.display = "block";
-                  } else {
-                      x.style.display = "none";
-                  }
+    for (var i = 0; i < markers.length; i++) {
+      addMarker(markers[i]);
+      console.log(markers.length);
+    }
 
-              }}, */
-              
-             
 
-  showNotification: function(from, align) {
+
+
+
+
+
+  },
+
+
+
+  verMais: function (id_sitio) {
+    fetchSondagens(id_sitio).then(result => {
+      if (result.status != 404) {
+        sondagens_associadas = result;
+      } else {
+        sondagens_associadas = "";
+      }
+    });
+    fetchUEs(id_sitio).then(result => {
+      if (result.status != 404) {
+        ues_associadas = result;
+      } else {
+        ues_associadas = "";
+      }
+    });
+    fetchContextoGeog(id_sitio).then(result => {
+      var geog = "";
+      if (result.status != 404) {
+        geog = result[0];
+      } else {
+        geog = "";
+      }
+    });
+    fetchContextoGeol(id_sitio).then(result => {
+      if (result.status != 404) {
+        geol = result[0];
+      } else {
+        geol = "";
+      }
+    });
+
+    console.log('Fetch das sondagens ainda não funciona, é necessário fazer push para o heroku')
+
+    var x = document.getElementById("escondido");
+    var txt = "<p>";
+    if (geog == null || geog == "") {
+      txt += "Contexto geográfico: --- </p>";
+    } else {
+      txt += " Contexto geográfico </p>";
+      txt += "</br>"
+      txt += "Relevo Geral: " + geog.relevo_geral;
+      txt += "</br>"
+      txt += "Unidade de Relevo: " + geog.unidade_relevo;
+      txt += "</br>"
+      txt += "Local de Implantação: " + geog.local_implantacao;
+      txt += "</br>"
+    }
+    if (geol == null || geol == "") {
+      txt += "<p>Contexto geológico: ---<br /></p>";
+    } else {
+      txt += "</br>";
+      txt += "<p> Contexto geológico </p>";
+      txt += "</br>"
+      txt += "Substrato Geológico: " + geol.substrato_geol;
+    }
+    txt += '<div class="inner">'
+    txt += '<br />'
+    txt += '<p>Sondagens associadas: ' + sondagens_associadas + '</p>'
+    txt += '<div class="dropdown">'
+    if (ues_associadas == null || ues_associadas == "") {
+      txt += '<button class="dropbtn"> Nenhuma UE</button>'
+    } else {
+      txt += '<button class="dropbtn"> Selecione uma UE...</button>'
+      txt += '<div class="dropdown-content">'
+      for (let i in ues_associadas) {
+
+        txt += '<a style="cursor:pointer" onclick="verMais2(' + ues_associadas[i].id_ue + ')">' + ues_associadas[i].identificacao + '</a>'
+
+        txt += '<a onclick="verMais2(' + ues_associadas[i].id_ue + ')">' + ues_associadas[i].identificacao + '</a>'
+
+      }
+    }
+
+    txt += '</div>'
+    txt += '</div>'
+    txt += '<br />'
+    txt += '<br />'
+    txt += '<br />'
+
+    x.innerHTML = txt;
+
+
+    if (x.style.display == 'none' || x.style.display == '') {
+
+      if (x.style.display === "none") {
+
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+
+    }
+  }, 
+
+
+
+  showNotification: function (from, align) {
     color = 'primary';
 
     $.notify({

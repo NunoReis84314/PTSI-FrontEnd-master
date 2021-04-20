@@ -2694,7 +2694,7 @@ button:disabled,
 	position: relative;
 	text-align: left;
 	width: 50%;
-	height: 320px;
+	height: auto;
 }
 
 .features li::-webkit-scrollbar {
@@ -3309,7 +3309,7 @@ button:disabled,
 
 .wrapper.style5 {
 	background-color: #293241;
-	color: #ffffff;
+	color: #293241;
 }
 
 .wrapper.style5 strong,
@@ -3322,7 +3322,7 @@ button:disabled,
 .wrapper.style5 h4,
 .wrapper.style5 h5,
 .wrapper.style5 h6 {
-	color: #ffffff;
+	color: #FAF9F6;
 	text-align: center;
 }
 
@@ -3347,7 +3347,7 @@ button:disabled,
 .wrapper.style5 header.major h4,
 .wrapper.style5 header.major h5,
 .wrapper.style5 header.major h6 {
-	border-color: #ffffff;
+	border-color: #FAF9F6;
 }
 
 .wrapper.style5 header.major p {
@@ -3497,7 +3497,7 @@ button:disabled,
 .content{width: 94%;}
 
     .rTable thead{display:none;}
-    .rTable tbody td{display: flex; flex-direction: column; }
+    .rTable tbody td{display: flex; flex-direction: column; text-align: center;}
 }
 
 @media only screen and (min-width: 1200px){
@@ -4388,7 +4388,7 @@ body.is-mobile.landing #footer {
 
 .site-footer h6 {
 	color: #293241;
-	font-size: 16px;
+	font-size: 20px;
 	text-transform: uppercase;
 	margin-top: 5px;
 	letter-spacing: 2px
@@ -4413,7 +4413,7 @@ body.is-mobile.landing #footer {
 }
 
 .footer-links a {
-	color: #737373
+	color: #293241
 }
 
 .footer-links a:active,
@@ -4556,14 +4556,17 @@ body.is-mobile.landing #footer {
 	background-color: rgba(0, 0, 0, 0.035);
 	color: #293241;
 	padding: 0px 9px;
-	font-size: 15px;
+	font-size: 70%;
 	cursor: pointer;
 	border-color: #293241;
+	text-align: center;
+	display: inline-block;
 }
 
 .btn_vermais:hover {
 	background-color: #293241;
 	color: white;
+	text-align: center;
 }
 
 
@@ -4656,106 +4659,5 @@ body.is-mobile.landing #footer {
 
 
 
-.image-dimension {
-	max-width: 5%;
-	height: auto;
-	margin-right: 40px;
-}
-
-.image-dimension2 {
-	max-width: 10%;
-	height: auto;
-	margin-right: 40px;
-}
-
-.image-dimension3 {
-	max-width: 4%;
-	height: auto;
-}
-
-@media (max-width:767px) {
-	.image-dimension {
-		max-width: 15%;
-		height: auto;
-		margin-right: 10px;
-	}
-
-	.image-dimension2 {
-		max-width: 30%;
-		height: auto;
-		margin-right: 10px;
-	}
-
-	.image-dimension3 {
-		max-width: 10%;
-		height: auto;
-	}
-
-}
-
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	
-	
-  }
-  
-  .dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	
-	
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-	min-height:190px;
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	overflow-y: auto; 
-    overflow-x: hidden; 
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-	display: block;
-	
-  }
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-	
-  }
-
+/* GALERIA */
 
